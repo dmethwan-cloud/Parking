@@ -1,6 +1,9 @@
 Hours = int(input(" Number of Hours : " ))
 vehicle = int(input("Vehicle type (Bike:1, Car/Van/SUV/Cab/Threewheel:2, Lorry/Bus:3): "))
 day = int(input("Day (Monday:1 ... Sunday:7): "))
+#age discount
+age = int(input("Age: "))
+
 
 #Normal Rate
 if vehicle == 1:
@@ -24,6 +27,11 @@ total = Hours * rate
 discount_1 =0
 total_discount1 =0
 
+#age discount
+discount_2 = 0
+total_discount2 =0
+
+
 if Hours == 1:
     total = 0
 
@@ -32,6 +40,13 @@ if Hours > 5:
     discount_1 = 0.01 * add_hours
     discount_1 = min(discount_1,0.1)
     total_discount1= total * discount_1
+
+#Age Discount
+if age > 65:
+    add_age = age - 65
+    discount_2 = 0.02 * add_age
+    discount_2 = min(discount_2,0.2)
+    total_discount2 = total * discount_2
 
 
 # Output
@@ -42,5 +57,10 @@ print("\nTotal before discount:",total)
 if Hours == 1:
     print("\n For under 1 hour parking is free")
 if Hours > 5 :
-    print("\n discount over 5 hours (max 10%) :",discount_1*100,"%","Rs.",total_discount1 )
-print("\nTotal:",total-total_discount1)
+    print("\n discount over 5 hours (max 10%) :",discount_1*100,"% ,","Rs.",total_discount1 )
+
+#age discount
+if age > 65:
+    print("\n Age discount:",discount_2*100,"% ,","Rs.",total_discount2 )
+
+print("\nTotal:",total-total_discount1-total_discount2)
